@@ -1,0 +1,43 @@
+body{
+    background-color:rgba(0, 0, 0, 0.911); /*mudar cor de fundo */
+    font-family:cursive; /*mudar Fonte */}
+
+img{
+    max-width: 100%; /*muda a largura da imagem para o tamanho da pagina */
+}
+
+div.lado-esquerdo {
+    width: 69%; /*define largura do lado esquedo como 50%*/
+}
+
+div.lado-direito{
+    width: 31%; /*define largura do lado direito como 50% */
+    display: flex; /*torna o conteudo flexível*/
+    flex-direction: column; 
+}
+
+div.conteudo{
+    display: flex; /*define que o conteudo será flexível */
+}
+
+h1 {
+    color:darkgreen; /*muda a cor da Fonte */
+    text-align: center; /*centraliza o titulo na pagina */
+}
+
+div.lado-esquerdo img{
+    width: 60%; /*muda a largura dentro do parametro determinado previamente */
+    border-radius: 30px; /* adiciona bordas há imagem */
+}
+
+div.lado-direito a{
+    text-decoration: none; /*retira o sublinhado dos links no lado direito */
+    font-size: 25px; /*muda o tamanho da Fonte */
+    background-color: darkgreen; /*muda a cor de fundo */
+    width: 50%; /*muda a largura */
+    margin: 15%; /*adciona um espaçamento interno no botão  */
+    color: black; /*muda a cor do texto */
+    text-align: center;/*centraliza o texto dentro do botão */
+    border-radius: 20px;
+
+}
