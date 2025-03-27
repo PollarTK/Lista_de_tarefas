@@ -10,7 +10,7 @@ def criar_tabelas():
     cursor.execute('''create table if not exists usuarios
                    (email text primary key, nome text, senha text)''' )
     
-    cursor.execute('''create table if not exists tarefas id integer primary key, conteudo text, esta_concluida integer, email_usuario text,
+    cursor.execute('''create table if not exists tarefas (id integer primary key, conteudo text, esta_concluida integer, email_usuario text,
              FOREIGN KEY(email_usuario) REFERENCES usuarios(email))''')
 
     conexao.commit()
