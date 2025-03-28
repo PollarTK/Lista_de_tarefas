@@ -28,6 +28,7 @@ h1 {
 div.lado-esquerdo img{
     width: 60%; /*muda a largura dentro do parametro determinado previamente */
     border-radius: 30px; /* adiciona bordas há imagem */
+    height: 860px;
 }
 
 div.lado-direito a{
@@ -39,5 +40,31 @@ div.lado-direito a{
     color: black; /*muda a cor do texto */
     text-align: center;/*centraliza o texto dentro do botão */
     border-radius: 20px;
+}
 
+form{
+    color:darkgreen;
+    text-align: center;
+    margin: 15%;
+    
+}
+
+div.formulario{
+    background-color:burlywood;
+    width: 300px;
+    border-radius: 20px;
+    margin-left: 42%;
+    margin-top: 10%;
+    height: 340px;
+}
+
+input{
+    border-radius: 20px;
+    margin: 5%;
+}
+
+button{
+    border-radius: 20px;
+    width: 40%;
+    margin-top: 10%;
 }

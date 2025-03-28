@@ -1,31 +1,33 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session  # importando a biblioteca Flask
+from flask import Flask, render_template, request
 import database
-import sqlite3
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__) # criando um objeto do flask chamado app
 
 @app.route('/')
-def hello():
+def Pagina_inicial():
     return render_template('index.html')
 
 @app.route('/login')
 def login():
     return render_template('login.html')
 
-@app.route('/cadastro')
+
+# GET serve para "pegar" as informações de uma pagina
+# POST serve para enviar informações
+@app.route('/cadastro', methods=["GET","POST"])
 def cadastro():
-    return render_template('cadastro.html')
+    if request.method == "POST":
+        form = request.form
 
-'''@app.route('/cadastrar', methods=['POST'])
-def cadastrar():
-    usuario = request.form['usuario']
-    email = request.form['email']
-    senha = request.form['senha']
+        if database.criar_usuario(form) == True:
+            return render_template('login.html')
+        
+        else:
+            return "Ocorreu um erro ao cadastrar o Usuário"
 
-    if database.criar_usuario(email, usuario, senha):
-        return "Usuário criado com sucesso"
     else:
-        return "Isso não funcionou"   '''
+        return render_template('cadastro.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
