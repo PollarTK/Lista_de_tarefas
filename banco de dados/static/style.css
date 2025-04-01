@@ -48,7 +48,7 @@ div.lado-direito a{
     height: 60px;
 }
 
-div{
+div.conteudo{
     background-color: black;
     width: 400px;
     height: 300px;
@@ -71,9 +71,15 @@ div.formulario{
     height: 340px;
 }
 
-input{
+.Formulario_login input, .formulario input{
     border-radius: 20px;
     margin: 5%;
+}
+
+.formulario_lista input{
+    width: 40%;
+    margin-left: -1300px;
+    height: 30px;
 }
 
 button{
