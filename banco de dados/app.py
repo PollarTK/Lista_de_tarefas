@@ -8,10 +8,19 @@ app = Flask(__name__) # criando um objeto do flask chamado app
 def Pagina_inicial():
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/login', methods=["GET","POST"])
 def login():
-    return render_template('login.html')
+    if request.method == "POST" :
+        form = request.form
 
+        if database.login(form) == True:
+            return render_template('lista.html')
+
+        else:
+            return "Ocorreu um Erro ao Fazer login"
+    else:
+        return render_template('login.html')
+    
 
 # GET serve para "pegar" as informações de uma pagina
 # POST serve para enviar informações
