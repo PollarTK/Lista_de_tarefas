@@ -10,21 +10,23 @@
 <body>
     <h1>Lista</h1>
     <div class="formulario_lista">
-
-        <form action="/cria_tarefa" method="POST">
-            <input class "formulario_lista type="text" id="email" name="email" required>
-            <br>
-
-
-
-
-
-
-
-
-
+        <form action="/criar_tarefa" method="POST">
+            <input type="text" id="conteudo"
+            name="conteudo" placeholder="O que precisa ser feito?" required>
+            <button type="submit" class="add">+</button>
         </form>
     </div>
-
+    {% for tarefa in tarefas %}
+        
+        <label class="checkbox">
+            <div>
+            <input type="checkbox" {{ "checked" if tarefa[2] else ""}}
+            onclick="window.location.href='/tarefas/atualizar/{{ tarefa[0] }}'">
+            {{ tarefa[1] }}
+            <button type="submit" class="deletar"> X </button>
+            </div>
+        </label>
+        <hr>
+    {% endfor %}
 </body>
 </html>

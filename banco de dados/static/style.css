@@ -24,11 +24,21 @@ h1 {
     color:darkgreen; /*muda a cor da Fonte */
     text-align: center; /*centraliza o titulo na pagina */
 }
+a{
+    margin-right: 400px;
+    background-color: aliceblue;
+}
+
+.add{
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    margin-right: 1200px;
+}
 
 div.lado-esquerdo img{
     width: 100%; /*muda a largura dentro do parametro determinado previamente */
     border-radius: 30px; /* adiciona bordas há imagem */
-    
     position: fixed;
     left: 0;
     top: 0;
@@ -59,7 +69,6 @@ div.conteudo{
 form{
     color:darkgreen;
     text-align: center;
-    margin: 15%;
 }
 
 div.formulario{
@@ -77,15 +86,13 @@ div.formulario{
 }
 
 .formulario_lista input{
-    width: 40%;
-    margin-left: -1300px;
-    height: 30px;
+    width: 30%;
 }
 
 button{
     border-radius: 20px;
     width: 40%;
-    margin-top: 10%;
+    margin-top: 1%;
 }
 
 div.Formulario_login{
@@ -95,4 +102,16 @@ div.Formulario_login{
     margin-left: 42%;
     margin-top: 10%;
     height: 200px;
+}
+
+.deletar{
+    padding: 5px;
+    width: 30px;
+    position: relative;
+    margin-left: 400px;
+    border-radius: 10px;
+}
+
+.checkbox{
+    color: darkgreen;
 }

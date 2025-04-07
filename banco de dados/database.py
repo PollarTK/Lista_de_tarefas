@@ -50,5 +50,63 @@ def login(formulario):
         resultado_verificacao = check_password_hash(senha_criptografada[0], formulario['senha'])
         return resultado_verificacao
 
+def criar_tarefa(conteudo, email):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute(''' INSERT INTO tarefas (conteudo, esta_concluida, email_usuario)
+                   VALUES (?, ?, ?)''', 
+                   (conteudo, False, email))
+    conexao.commit()
+    return True
+
+def buscar_tarefas(email):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('''SELECT id, conteudo, esta_concluida
+                   FROM tarefas WHERE email_usuario=?''', 
+                   (email,))
+    conexao.commit()
+    tarefas = cursor.fetchall() # Busca todos os resultados do select e guarda em "tarefas"
+    return tarefas
+
+def marcar_tarefa(id):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('''SELECT esta_concluida
+    FROM tarefas WHERE id=?''', (id,))
+    esta_concluida = cursor.fetchone()
+    esta_concluida = esta_concluida[0]
+
+    if (esta_concluida):
+        esta_concluida = False
+    else:
+        esta_concluida = True
+
+    cursor.execute('''UPDATE tarefas set esta_concluida = ? WHERE id=?''', (esta_concluida, id))
+    cursor.close()
+    conexao.commit()
+    return True
+
+def excluir_tarefa(id, email):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('''SELECT email_usuario FROM tarefas WHERE id=?''', (id,))
+    conexao.commit()
+    email = cursor.fetchone()
+    if (email[0] !=email[0]):
+        return False
+    else:
+        cursor.execute(''' DELETE FROM tarefas WHERE id=?''', (id,))
+        cursor.close()
+    conexao.commit()
+
+def excluir_usuario(email):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('DELETE FROM tarefas WHERE email_usuario=?',(email,))
+    cursor.execute('DELETE FROM usuarios WHERE email-?',(email,))
+    conexao.commit()
+    return True
+
 if __name__ == '__main__':
     criar_tabelas()
