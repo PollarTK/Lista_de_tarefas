@@ -92,13 +92,16 @@ def excluir_tarefa(id, email):
     cursor = conexao.cursor()
     cursor.execute('''SELECT email_usuario FROM tarefas WHERE id=?''', (id,))
     conexao.commit()
-    email = cursor.fetchone()
-    if (email[0] !=email[0]):
+    email_banco = cursor.fetchone()
+    print(email, email_banco)
+    if (email_banco[0] !=email):
+        
         return False
     else:
         cursor.execute(''' DELETE FROM tarefas WHERE id=?''', (id,))
+        conexao.commit()
         cursor.close()
-    conexao.commit()
+        return True
 
 def excluir_usuario(email):
     conexao = conectar_banco()
