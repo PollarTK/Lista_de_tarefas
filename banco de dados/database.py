@@ -34,7 +34,7 @@ def criar_usuario(formulario):
     conexao.commit()
     return True
 
-def login(formulario):
+def fazer_login(formulario):
     conexao = conectar_banco()
     cursor = conexao.cursor()
     cursor.execute('''SELECT count(email) from usuarios WHERE email=?''',(formulario['email'],))
@@ -42,10 +42,13 @@ def login(formulario):
 
     quantidade_de_emails = cursor.fetchone()
     if(quantidade_de_emails[0] < 0):
+        print("LOG: email não encontrado.")
         return False
         
     else:
+        cursor = conexao.cursor()
         cursor.execute('''SELECT (senha) from usuarios WHERE email=?''',(formulario['email'],))
+        conexao.commit()
         senha_criptografada = cursor.fetchone()
         resultado_verificacao = check_password_hash(senha_criptografada[0], formulario['senha'])
         return resultado_verificacao
@@ -107,7 +110,7 @@ def excluir_usuario(email):
     conexao = conectar_banco()
     cursor = conexao.cursor()
     cursor.execute('DELETE FROM tarefas WHERE email_usuario=?',(email,))
-    cursor.execute('DELETE FROM usuarios WHERE email-?',(email,))
+    cursor.execute('DELETE FROM usuarios WHERE email=?',(email,))
     conexao.commit()
     return True
 

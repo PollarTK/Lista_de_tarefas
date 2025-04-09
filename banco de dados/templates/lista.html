@@ -19,14 +19,15 @@
     {% for tarefa in tarefas %}
         
         <label class="checkbox">
-            <div>
+            
             <input type="checkbox" {{ "checked" if tarefa[2] else ""}}
             onclick="window.location.href='/tarefas/atualizar/{{ tarefa[0] }}'">
-            {{ tarefa[1] }}
-            <button type="submit" class="deletar" onclick="window.location.href='/tarefas/excluir/{{ tarefa[0] }}'"> X </button>
-            </div>
+            {{ tarefa[1] }} 
         </label>
-        <hr>
+        <button type="submit" class="deletar" onclick="window.location.href='/tarefas/excluir/{{ tarefa[0] }}'"> X </button>
     {% endfor %}
+
+    <input type="button"
+    onclick="window.location.href='/excluir_usuario'" value="Excluir usuário">
 </body>
 </html>

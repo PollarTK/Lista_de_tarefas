@@ -9,17 +9,15 @@ app.secret_key = "SENHA SECRETA"
 def Pagina_inicial():
     return render_template('index.html')
 
-@app.route('/login', methods=["GET","POST"])
+@app.route('/login', methods=["GET", "POST"])
 def login():
-    if request.method == "POST" :
+    if request.method == "POST":
         form = request.form
-
-        if database.login(form) == True:
-            session['usuario'] = form['email']
+        if database.fazer_login(form) == True:
+            session['usuario'] = form['email'] # Armazena o email do usuário na sessão
             return redirect(url_for('lista'))
-
         else:
-            return "Ocorreu um Erro ao Fazer login"
+            return "Ocorreu um erro ao fazer login"
     else:
         return render_template('login.html')
 
@@ -77,7 +75,12 @@ def excluir_tarefa(id):
 
 @app.route('/excluir_usuario')
 def excluir_usuario():
-    pass
+    email = session['usuario']
+
+    if database.excluir_usuario(email):
+        return redirect(url_for('cadastro'))
+    else:
+        return "Ocorreu um erro ao excluir o usuário"
 
 if __name__ == '__main__':
     app.run(debug=True)
