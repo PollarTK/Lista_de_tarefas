@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Editar tarefa</h1> 
+    <div class="formulario">
+        <form action="/tarefas/editar/{{ id }}" method="POST">
+            <input value="{{tarefa}}" type="text" id="conteudo"
+            name="conteudo" placeholder="O que precisa ser feito?" content="teste" required>
+            <button type="submit" class="btn">Confirmar edição</button>
+        </form>
+    </div>
+    
+</body>
+</html>

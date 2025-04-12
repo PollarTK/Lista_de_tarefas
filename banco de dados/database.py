@@ -46,12 +46,15 @@ def fazer_login(formulario):
         return False
         
     else:
-        cursor = conexao.cursor()
-        cursor.execute('''SELECT (senha) from usuarios WHERE email=?''',(formulario['email'],))
-        conexao.commit()
-        senha_criptografada = cursor.fetchone()
-        resultado_verificacao = check_password_hash(senha_criptografada[0], formulario['senha'])
-        return resultado_verificacao
+        try:
+            cursor = conexao.cursor()
+            cursor.execute('''SELECT (senha) from usuarios WHERE email=?''',(formulario['email'],))
+            conexao.commit()
+            senha_criptografada = cursor.fetchone()
+            resultado_verificacao = check_password_hash(senha_criptografada[0], formulario['senha'])
+            return resultado_verificacao
+        except:
+            return False
 
 def criar_tarefa(conteudo, email):
     conexao = conectar_banco()
@@ -111,6 +114,29 @@ def excluir_usuario(email):
     cursor = conexao.cursor()
     cursor.execute('DELETE FROM tarefas WHERE email_usuario=?',(email,))
     cursor.execute('DELETE FROM usuarios WHERE email=?',(email,))
+    conexao.commit()
+    return True
+
+def buscar_conteudo_tarefa(id):
+    # Conecta com o banco
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+
+    #Executa a query do conteúdo
+    cursor.execute('''SELECT conteudo FROM tarefas WHERE id=?''', (id,))
+    conexao.commit()
+    conteudo = cursor.fetchone()
+
+    #Retorna o conteudo
+    return(conteudo[0])
+
+def editar_tarefa(novo_conteudo, id):
+    # Conecta com o banco
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+
+    #Executa o comando
+    cursor.execute('''UPDATE tarefas SET conteudo=? WHERE id=?''', (novo_conteudo, id))
     conexao.commit()
     return True
 

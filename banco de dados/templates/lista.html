@@ -17,14 +17,16 @@
         </form>
     </div>
     {% for tarefa in tarefas %}
-        
         <label class="checkbox">
-            
-            <input type="checkbox" {{ "checked" if tarefa[2] else ""}}
+            <input type="checkbox" {{ "checked" if tarefa[2] else "" }}
             onclick="window.location.href='/tarefas/atualizar/{{ tarefa[0] }}'">
-            {{ tarefa[1] }} 
+            {{ tarefa[1] }}
         </label>
-        <button type="submit" class="deletar" onclick="window.location.href='/tarefas/excluir/{{ tarefa[0] }}'"> X </button>
+        <input type="button"
+            onclick="window.location.href='/tarefas/excluir/{{ tarefa[0] }}'" value="Excluir">
+        <input type="button"
+        onclick="window.location.href='/tarefas/editar/{{ tarefa[0] }}'" value="Editar">
+        <hr>
     {% endfor %}
 
     <input type="button"

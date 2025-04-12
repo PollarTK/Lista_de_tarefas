@@ -104,14 +104,6 @@ div.Formulario_login{
     height: 200px;
 }
 
-.deletar{
-    padding: 5px;
-    width: 30px;
-    position: relative;
-    margin-left: 400px;
-    border-radius: 10px;
-}
-
 .checkbox{
     color: darkgreen;
 }
